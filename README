@@ -1,0 +1,9 @@
+/*==================================================
+
+This is a simple shopping cart, storing items in
+session cookies and committing them to a database.
+
+Taylor Kearns
+taylorkearns.com
+
+================================================== */
