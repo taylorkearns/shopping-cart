@@ -1,7 +1,5 @@
 <?php
 
-require_once($_SERVER['DOCUMENT_ROOT'].'/dbconnect.php');
-
 class ShoppingCartManager
 {
     function ShoppingCartManager()
@@ -29,6 +27,7 @@ class ShoppingCartManager
     
     function get_catalog_items()
     {
+        $items = array();
         $query = 'SELECT * FROM catalog ORDER BY item_name';
         $result = mysql_query($query);
         if(mysql_num_rows($result) == 0)
@@ -37,11 +36,16 @@ class ShoppingCartManager
         }
         else
         {
-            while($row = mysql_fetch_assoc($result))
+            for($i = 0; $i < mysql_num_rows($result); $i++)
             {
-                echo $row['item_name'];
+                $items[$i] = array();
+                while($row = mysql_fetch_assoc($result))
+                {
+                    $items[$i]['item_name'] = $row['item_name'];
+                }
             }
         }
+        return $items;
     }
 }
 

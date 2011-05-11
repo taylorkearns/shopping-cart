@@ -25,6 +25,11 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/get_catalog.php');
 <h1>Browse Items</h1>
 
 <section id="catalog">
+    <?php if(isset($items) and count($items) >= 1): ?>
+        <p>There are <?php echo(count($items)); ?> items to display.</p>
+    <?php else: ?>
+        <p>There are no catalog items to display.</p>
+    <?php endif; ?>
 </section> <!-- #catalog -->
 
   
