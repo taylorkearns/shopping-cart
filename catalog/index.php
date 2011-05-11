@@ -28,10 +28,10 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/get_catalog.php');
     <?php if(isset($items) and count($items) >= 1): ?>
         <?php for($i = 0; $i < count($items); $i++): ?>
         	<li><strong><?php echo($items[$i]['name']); ?></strong><br />
-        	$<?php echo($items[$i]['price']) ?></li>
+        	$<?php echo($items[$i]['price']); ?></li>
         <?php endfor; ?>
     <?php else: ?>
-        <p>There are no catalog items to display.</p>
+        <p>There are no items to display.</p>
     <?php endif; ?>
 </section> <!-- #catalog -->
 

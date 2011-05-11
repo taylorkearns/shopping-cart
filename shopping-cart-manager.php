@@ -41,6 +41,7 @@ class ShoppingCartManager
             {
                 $i++;
                 $items[$i] = array();
+                $items[$i]['id'] = $row['id'];
                 $items[$i]['name'] = $row['item_name'];
                 $items[$i]['description'] = $row['item_description'];
                 $items[$i]['price'] = $row['item_price'];
