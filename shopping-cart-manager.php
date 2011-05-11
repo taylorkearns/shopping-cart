@@ -5,7 +5,7 @@ class ShoppingCartManager
     function ShoppingCartManager()
     {
 	    $database_connection = new DatabaseConnection();
-	    if(!($database_connection->db_connect('127.0.0.1', 'root', 'mu113n')))
+	    if(!($database_connection->db_connect('127.0.0.1', 'root', 'ord403')))
 	    {
 	        $error = "Unable to establish database connection. Error: ".mysql_error();
 	        include($_SERVER['DOCUMENT_ROOT'].'/error.html.php');
@@ -36,13 +36,14 @@ class ShoppingCartManager
         }
         else
         {
-            for($i = 0; $i < mysql_num_rows($result); $i++)
+            $i = -1;
+            while($row = mysql_fetch_assoc($result))
             {
+                $i++;
                 $items[$i] = array();
-                while($row = mysql_fetch_assoc($result))
-                {
-                    $items[$i]['item_name'] = $row['item_name'];
-                }
+                $items[$i]['name'] = $row['item_name'];
+                $items[$i]['description'] = $row['item_description'];
+                $items[$i]['price'] = $row['item_price'];
             }
         }
         return $items;
