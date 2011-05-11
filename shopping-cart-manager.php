@@ -5,7 +5,7 @@ class ShoppingCartManager
     function ShoppingCartManager()
     {
 	    $database_connection = new DatabaseConnection();
-	    if(!($database_connection->db_connect('127.0.0.1', 'root', 'ord403')))
+	    if(!($database_connection->db_connect('127.0.0.1', 'root', 'mu113n')))
 	    {
 	        $error = "Unable to establish database connection. Error: ".mysql_error();
 	        include($_SERVER['DOCUMENT_ROOT'].'/error.html.php');

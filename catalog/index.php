@@ -27,8 +27,14 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/get_catalog.php');
 <section id="catalog">
     <?php if(isset($items) and count($items) >= 1): ?>
         <?php for($i = 0; $i < count($items); $i++): ?>
-        	<li><strong><?php echo($items[$i]['name']); ?></strong><br />
-        	$<?php echo($items[$i]['price']); ?></li>
+        	<li>
+            	<strong><?php echo($items[$i]['name']); ?></strong><br />
+            	$<?php echo($items[$i]['price']); ?><br />
+            	<form action="<?php echo($_SERVER['PHP_SELF']); ?>" method="post">
+                    <input type="hidden" name="item" value="<?php echo($items[$i]['id']); ?>" />
+                    <input type="submit" class="add-to-cart" value="Add to cart" />
+            	</form>
+        	</li>
         <?php endfor; ?>
     <?php else: ?>
         <p>There are no items to display.</p>
