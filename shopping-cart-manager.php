@@ -65,7 +65,7 @@ class ShoppingCartManager
     function build_cart()
     {
         $cart_items = array();
-        $cart_hash = array();
+        $cart_hash = array();  
 
         // Create hash of session cart items so that multiples of the same item get added to each other
         foreach($_SESSION['cart'] as $item)
