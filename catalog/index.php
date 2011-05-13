@@ -1,5 +1,5 @@
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'].'/get_catalog.php');
+include_once($_SERVER['DOCUMENT_ROOT'].'/catalog.php');
 ?>
 
 <!doctype html>  
@@ -22,7 +22,7 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/get_catalog.php');
 
 <body>
   
-<h1>Browse Items</h1>
+<h1></h1>
 
 <section id="catalog">
     <?php if(isset($items) and count($items) >= 1): ?>
@@ -40,6 +40,12 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/get_catalog.php');
         <p>There are no items to display.</p>
     <?php endif; ?>
 </section> <!-- #catalog -->
+
+<p><strong>debug:</strong><br />
+cart = <?php print_r($_SESSION['cart']); ?><br />
+$cart_hash = <?php print_r($cart_hash); ?><br />
+$_SESSION['cart'] = <?php print_r($_SESSION['cart']); ?>
+</p>
 
   
     
