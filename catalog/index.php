@@ -41,9 +41,12 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/catalog.php');
     <?php endif; ?>
 </section> <!-- #catalog -->
 
+<section id="cart">
+    <h2>Cart</h2>
+</section>
+
 <p><strong>debug:</strong><br />
-cart = <?php print_r($_SESSION['cart']); ?><br />
-$cart_hash = <?php print_r($cart_hash); ?><br />
+$cart_items = <?php print_r($cart_items); ?><br />
 $_SESSION['cart'] = <?php print_r($_SESSION['cart']); ?>
 </p>
 

@@ -49,6 +49,42 @@ class ShoppingCartManager
         }
         return $items;
     }
+    
+    function add_items_to_session()
+    {        
+        if(isset($_POST['item']))
+        {
+            if(!isset($_SESSION['cart']))
+            { 
+                $_SESSION['cart'] = array(); 
+            }
+            array_push($_SESSION['cart'], $_POST['item']);
+        }
+    }
+    
+    function build_cart()
+    {
+        $cart_items = array();
+        $cart_hash = array();
+
+        // Create hash of session cart items so that multiples of the same item get added to each other
+        foreach($_SESSION['cart'] as $item)
+        {
+            $cart_hash[$item] = isset($cart_hash[$item]) ? $cart_hash[$item] + 1 : 1;
+        }
+        foreach($cart_hash as $key => $value)
+        {
+            $query = 'SELECT id, item_name, item_price FROM catalog WHERE id = '.$key;
+            $result = mysql_query($query);
+            while($row = mysql_fetch_array($result))
+            {
+                $cart_items[$key] = array();
+                $cart_items[$key]['name'] = $row['item_name'];
+                $cart_items[$key]['price'] = $row['item_price'];
+            }
+        }
+        return $cart_items;
+    }
 }
 
 ?>
