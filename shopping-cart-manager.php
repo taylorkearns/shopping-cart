@@ -81,6 +81,7 @@ class ShoppingCartManager
                 $cart_items[$key] = array();
                 $cart_items[$key]['name'] = $row['item_name'];
                 $cart_items[$key]['price'] = $row['item_price'];
+                $cart_items[$key]['quantity'] = isset($cart_items[$key]) ? $cart_items[$key]['quantity'] + 1 : 1; 
             }
         }
         return $cart_items;
