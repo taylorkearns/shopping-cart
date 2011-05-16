@@ -57,10 +57,12 @@ class ShoppingCartManager
         $result = mysql_query($query);
         while($row = mysql_fetch_assoc($result))
         {
+            $item_data = array();
             $item_data['id'] = $row['id'];
             $item_data['name'] = $row['item_name'];
             $item_data['description'] = $row['item_description'];
             $item_data['price'] = $row['item_price'];
+            $item_data['quantity'] = 1;
         }
         $this->add_item_to_session($item_data);
     }
@@ -71,7 +73,14 @@ class ShoppingCartManager
         { 
             $_SESSION['cart'] = array(); 
         }
-        array_push($_SESSION['cart'], $item_data);
+        if(array_search($item_data['id'], $_SESSION['cart']))
+        {
+            
+        }
+        else
+        {
+            array_push($_SESSION['cart'], $item_data);
+        }
     }
 }
 
