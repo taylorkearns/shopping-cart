@@ -7,7 +7,9 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/shopping-cart-manager.php');
 
 $shopping_cart_manager = new ShoppingCartManager();
 $items = $shopping_cart_manager->get_catalog_items();
-$shopping_cart_manager->add_items_to_session();
-$cart_items = $shopping_cart_manager->build_cart();
+if(isset($_POST['item']))
+{
+    $shopping_cart_manager->add_to_cart($_POST['item']);
+}
 
 ?>

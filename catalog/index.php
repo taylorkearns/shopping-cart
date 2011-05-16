@@ -46,8 +46,8 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/catalog.php');
 </section>
 
 <p><strong>debug:</strong><br />
-$cart_items = <?php print_r($cart_items); ?><br />
-$_SESSION['cart'] = <?php print_r($_SESSION['cart']); ?>
+<!-- $cart_items = <?php print_r($cart_items); ?><br /> -->
+$_SESSION['cart'] = <?php print_r($_SESSION['cart']); ?><br />
 </p>
 
   
