@@ -69,6 +69,8 @@ class ShoppingCartManager
         
         $cart = $this->add_item_to_cart($cart, $item_data);
         $_SESSION['cart'] = $cart;
+        
+        return $cart;
     }
     
     function add_item_to_cart($cart, $item_data)
@@ -89,8 +91,32 @@ class ShoppingCartManager
         {
             array_push($cart, $item_data);
         }
+        
         return $cart;
-    }
+    }    
 }
 
 ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -16,6 +16,29 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/catalog.php');
     <link rel="shortcut icon" href="/favicon.ico">
     
     <link rel="stylesheet" href="css/style.css">
+    <style type="text/css">
+        #catalog
+        {
+            width: 60%;
+            float: left;
+            margin-bottom: 50px;
+        }
+        
+        #cart
+        {
+            width: 30%;
+            margin-left: 60%;
+            min-height: 200px;
+            background: #eee;
+        }
+        
+        #debug
+        {
+            clear: left;
+            border: 1px solid #ddd;
+            padding: 5px;
+        }
+    </style>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.js"></script>
 </head>
 
@@ -23,7 +46,7 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/catalog.php');
 
 <body>
   
-<h1></h1>
+<!-- <h1>Catalog</h1> -->
 
 <section id="catalog">
     <?php if(isset($items) and count($items) >= 1): ?>
@@ -43,13 +66,17 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/catalog.php');
 </section> <!-- #catalog -->
 
 <section id="cart">
-    <h2>Cart</h2>
+    <!-- <h2>Cart</h2> -->
+    <table>
+        
+    </table>
 </section>
 
-<p><strong>debug:</strong><br />
-$_SESSION['cart'] = <?php var_dump($_SESSION['cart']); ?><br />
-$item_data = <?php var_dump($item_data); ?><br />
-</p>
+<section id="debug">
+    <p><strong>debug:</strong><br />
+    $_SESSION['cart'] = <?php var_dump($_SESSION['cart']); ?><br />
+    </p>
+</section>
 
   
     
