@@ -50,37 +50,46 @@ class ShoppingCartManager
         return $items;
     }
     
-    function add_to_cart($added_item_id)
+    function create_cart_item($added_item_id)
     {
-        $item_data = array();
+        $cart = $_SESSION['cart'];
+        if(!isset($cart)){ $cart = array(); }
+        
         $query = 'SELECT id, item_name, item_description, item_price FROM catalog WHERE id = ' . $added_item_id;
         $result = mysql_query($query);
+        $item_data = array();
         while($row = mysql_fetch_assoc($result))
         {
-            $item_data = array();
             $item_data['id'] = $row['id'];
             $item_data['name'] = $row['item_name'];
             $item_data['description'] = $row['item_description'];
             $item_data['price'] = $row['item_price'];
             $item_data['quantity'] = 1;
         }
-        $this->add_item_to_session($item_data);
+        
+        $cart = $this->add_item_to_cart($cart, $item_data);
+        $_SESSION['cart'] = $cart;
     }
     
-    function add_item_to_session($item_data)
+    function add_item_to_cart($cart, $item_data)
     {        
-        if(!isset($_SESSION['cart']))
-        { 
-            $_SESSION['cart'] = array(); 
-        }
-        if(array_search($item_data['id'], $_SESSION['cart']))
+        $in_cart = FALSE;
+        for($i = 0; $i < sizeof($cart); $i++)
         {
-            
+            if($cart[$i]['id'] == $item_data['id'])
+            {
+                $prev_quantity = intval($cart[$i]['quantity']);
+                $new_quantity = $prev_quantity + $item_data['quantity'];
+                $cart[$i]['quantity'] = $new_quantity;
+                $in_cart = TRUE;
+                break;
+            }
         }
-        else
+        if($in_cart == FALSE)
         {
-            array_push($_SESSION['cart'], $item_data);
+            array_push($cart, $item_data);
         }
+        return $cart;
     }
 }
 

@@ -9,7 +9,7 @@ $shopping_cart_manager = new ShoppingCartManager();
 $items = $shopping_cart_manager->get_catalog_items();
 if(isset($_POST['item']))
 {
-    $shopping_cart_manager->add_to_cart($_POST['item']);
+    $shopping_cart_manager->create_cart_item($_POST['item']);
 }
 
 ?>

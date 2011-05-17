@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL);
 include_once($_SERVER['DOCUMENT_ROOT'].'/catalog.php');
 ?>
 
@@ -46,8 +47,8 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/catalog.php');
 </section>
 
 <p><strong>debug:</strong><br />
-<!-- $cart_items = <?php print_r($cart_items); ?><br /> -->
 $_SESSION['cart'] = <?php var_dump($_SESSION['cart']); ?><br />
+$item_data = <?php var_dump($item_data); ?><br />
 </p>
 
   
