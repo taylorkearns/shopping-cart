@@ -92,8 +92,13 @@ class ShoppingCartManager
             array_push($cart, $item_data);
         }
         
-        return $cart;
+        return $cart; // This return isn't getting used
     }    
+    
+    function display_cart();
+    {
+        $current_cart = $_SESSION['cart'];
+    }
 }
 
 ?>
