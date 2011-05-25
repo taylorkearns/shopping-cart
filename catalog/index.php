@@ -93,27 +93,24 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/catalog.php');
 <section id="cart">
     <!-- <h2>Cart</h2> -->
     <table>
-        <thead>
-            <tr>
-                <th>I</th>
-                <th>P</th>
-            </tr>
-        </thead>
-        <tfoot>
-            <tr>
-                <td>T</td>
-                <td>[  ]</td>
-            </tr>
-        </tfoot>
-        <tbody>
-            <tr>
-                <td>Lorem Ipsum Dolor</td>
-                <td>8888.88</td>
-            </tr>
-            <tr>
-                <td>Lorem Ipsum Dolor</td>
-                <td>8888.88</td>
-            </tr>
+        <?php 
+        if(isset($cart) and count($cart) > 0)
+        {
+            echo("<thead>\n<tr>\n<th>I</th>\n<th>P</th>\n</tr>\n</thead>"); // Header
+            echo("<tfoot>\n<tr>\n<td>T</td>\n<td></td>\n</tr>\n</tfoot>"); // Totals
+            echo("<tbody>");
+            for($i = 0; $i < count($cart); $i++)
+            {
+                echo("<tr>\n<td>".$cart[$i]['name']."</td>\n<td>".$cart[$i]['price']."</td>\n</tr>");
+            }
+            echo("\n</tbody>");
+        } 
+        else
+        {
+            echo("Nada");
+        } 
+        ?>
+        <!--
             <tr>
                 <td>Lorem Ipsum Dolor</td>
                 <td>8888.88</td>
@@ -122,7 +119,15 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/catalog.php');
                 <td>Lorem Ipsum Dolor</td>
                 <td>8888.88</td>
             </tr>
-        </tbody>
+            <tr>
+                <td>Lorem Ipsum Dolor</td>
+                <td>8888.88</td>
+            </tr>
+            <tr>
+                <td>Lorem Ipsum Dolor</td>
+                <td>8888.88</td>
+            </tr>
+        -->
     </table>
 </section>
 

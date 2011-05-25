@@ -53,7 +53,10 @@ class ShoppingCartManager
     function create_cart_item($added_item_id)
     {
         $cart = $_SESSION['cart'];
-        if(!isset($cart)){ $cart = array(); }
+        if(sizeof($cart) == 0)
+        { 
+            $cart = array(); 
+        }
         
         $query = 'SELECT id, item_name, item_description, item_price FROM catalog WHERE id = ' . $added_item_id;
         $result = mysql_query($query);
@@ -94,6 +97,20 @@ class ShoppingCartManager
         
         return $cart;
     }    
+    
+    function return_cart()
+    {
+        if(isset($_SESSION['cart']))
+        {
+            $cart = $_SESSION['cart'];
+        }
+        else
+        {
+            $cart = $_SESSION['cart'] = array();
+        }
+        
+        return $cart;
+    }
 }
 
 ?>
