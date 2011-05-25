@@ -17,6 +17,11 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/catalog.php');
     
     <link rel="stylesheet" href="css/style.css">
     <style type="text/css">
+        body
+        {
+            font-family: Helvetica;
+        }
+        
         #catalog
         {
             width: 60%;
@@ -26,10 +31,30 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/catalog.php');
         
         #cart
         {
-            width: 30%;
+            font-size: 0.8em;
+        }
+        
+        #cart table
+        {
+            width: 300px;
             margin-left: 60%;
             min-height: 200px;
             background: #eee;
+        }
+        
+        tfoot
+        {
+            background: #ddd;
+        }
+        
+        td
+        {
+            padding-top: 5px;            
+        }
+        
+        th
+        {
+            text-align: left;
         }
         
         #debug
@@ -68,7 +93,36 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/catalog.php');
 <section id="cart">
     <!-- <h2>Cart</h2> -->
     <table>
-        
+        <thead>
+            <tr>
+                <th>I</th>
+                <th>P</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <td>T</td>
+                <td>[  ]</td>
+            </tr>
+        </tfoot>
+        <tbody>
+            <tr>
+                <td>Lorem Ipsum Dolor</td>
+                <td>8888.88</td>
+            </tr>
+            <tr>
+                <td>Lorem Ipsum Dolor</td>
+                <td>8888.88</td>
+            </tr>
+            <tr>
+                <td>Lorem Ipsum Dolor</td>
+                <td>8888.88</td>
+            </tr>
+            <tr>
+                <td>Lorem Ipsum Dolor</td>
+                <td>8888.88</td>
+            </tr>
+        </tbody>
     </table>
 </section>
 
