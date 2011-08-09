@@ -3,7 +3,7 @@ error_reporting(E_ALL);
 include_once($_SERVER['DOCUMENT_ROOT'].'/catalog.php');
 ?>
 
-<!doctype html>  
+<!DOCTYPE HTML>  
 
 <head>
     <meta charset="utf-8">
@@ -17,61 +17,23 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/catalog.php');
     
     <link rel="stylesheet" href="css/style.css">
     <style type="text/css">
-        body
-        {
-            font-family: Helvetica;
-        }
-        
-        #catalog
-        {
-            width: 60%;
-            float: left;
-            margin-bottom: 50px;
-        }
-        
-        #cart
-        {
-            font-size: 0.8em;
-        }
-        
-        #cart table
-        {
-            width: 300px;
-            margin-left: 60%;
-            min-height: 200px;
-            background: #eee;
-        }
-        
-        tfoot
-        {
-            background: #ddd;
-        }
-        
-        td
-        {
-            padding-top: 5px;            
-        }
-        
-        th
-        {
-            text-align: left;
-        }
-        
-        #debug
-        {
-            clear: left;
-            border: 1px solid #ddd;
-            padding: 5px;
-        }
+        body { font-family: Helvetica; }
+        #catalog { width: 60%; float: left; margin-bottom: 50px; }
+        #cart { font-size: 0.8em; }
+        #cart table { width: 300px; margin-left: 60%; min-height: 200px; background: #eee; }
+        tr.total { background: #ddd; font-weight: 600; }
+        td { padding: 5px; }
+        th { text-align: left; white-space: nowrap; padding: 5px; }        
+        #debug { clear: left; border: 1px solid #ddd; padding: 5px; }
     </style>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.js"></script>
 </head>
 
 
 
 <body>
   
-<!-- <h1>Catalog</h1> -->
+<h1>Catalog</h1>
 
 <section id="catalog">
     <?php if(isset($items) and count($items) >= 1): ?>
@@ -91,44 +53,35 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/catalog.php');
 </section> <!-- #catalog -->
 
 <section id="cart">
-    <!-- <h2>Cart</h2> -->
-    <table>
-        <?php 
-        if(isset($cart) and count($cart) > 0)
-        {
-            echo("<thead>\n<tr>\n<th>I</th>\n<th>P</th>\n</tr>\n</thead>"); // Header
-            echo("<tfoot>\n<tr>\n<td>T</td>\n<td></td>\n</tr>\n</tfoot>"); // Totals
-            echo("<tbody>");
-            for($i = 0; $i < count($cart); $i++)
-            {
-                echo("<tr>\n<td>".$cart[$i]['name']."</td>\n<td>".$cart[$i]['price']."</td>\n</tr>");
-            }
-            echo("\n</tbody>");
-        } 
-        else
-        {
-            echo("Nada");
-        } 
-        ?>
-        <!--
-            <tr>
-                <td>Lorem Ipsum Dolor</td>
-                <td>8888.88</td>
-            </tr>
-            <tr>
-                <td>Lorem Ipsum Dolor</td>
-                <td>8888.88</td>
-            </tr>
-            <tr>
-                <td>Lorem Ipsum Dolor</td>
-                <td>8888.88</td>
-            </tr>
-            <tr>
-                <td>Lorem Ipsum Dolor</td>
-                <td>8888.88</td>
-            </tr>
-        -->
-    </table>
+	<h2>Cart</h2>
+	<table>
+		<?php
+		$total_cart_cost = 0;
+		
+		if(isset($cart) and count($cart) > 0)
+		{
+			echo('<thead><tr><th>Item Name</th><th>Item Price</th><th>Quantity</th><th>Total Price</th></tr></thead>');
+			echo('<tbody>');
+			for($i = 0; $i < count($cart); $i++)
+			{
+				$total_item_cost = $cart[$i]['price'] * $cart[$i]['quantity'];
+				$total_cart_cost += $total_item_cost;
+				
+				echo('<tr><td>' . $cart[$i]['name'] 
+				. '</td><td>$' . $cart[$i]['price'] 
+				. '</td><td>' . $cart[$i]['quantity']
+				. '</td><td>$' . number_format($total_item_cost, 2) 
+				. '</td></tr>');
+			}
+			echo('<tr class="total"><td>Total Amount</td><td></td><td></td><td>$' . number_format($total_cart_cost, 2) . '</td></tr>');
+			echo('</tbody>');
+		} 
+		else
+		{
+			echo("Cart is empty.");
+		} 
+		?>
+	</table>
 </section>
 
 <section id="debug">

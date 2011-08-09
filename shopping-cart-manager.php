@@ -84,7 +84,7 @@ class ShoppingCartManager
             if($cart[$i]['id'] == $item_data['id'])
             {
                 $prev_quantity = intval($cart[$i]['quantity']);
-                $new_quantity = $prev_quantity + $item_data['quantity'];
+                $new_quantity = $prev_quantity + intval($item_data['quantity']);
                 $cart[$i]['quantity'] = $new_quantity;
                 $in_cart = TRUE;
                 break;
