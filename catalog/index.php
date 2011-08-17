@@ -33,7 +33,7 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/catalog.php');
 
 <body>
   
-<h1>Catalog</h1>
+<!-- <h1>Catalog</h1> -->
 
 <section id="catalog">
     <?php if(isset($items) and count($items) >= 1): ?>
@@ -45,6 +45,10 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/catalog.php');
                     <input type="hidden" name="item" value="<?php echo($items[$i]['id']); ?>" />
                     <input type="submit" class="add-to-cart" value="Add to cart" />
             	</form>
+            	<form action="<?php echo($_SERVER['PHP_SELF']); ?>" method="post">
+					<input type="hidden" name="removed_item" value="<?php echo($items[$i]['id']); ?>" />
+                    <input type="submit" class="remove-from-cart" value="Remove from cart" />
+            	</form>
         	</li>
         <?php endfor; ?>
     <?php else: ?>
@@ -53,7 +57,7 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/catalog.php');
 </section> <!-- #catalog -->
 
 <section id="cart">
-	<h2>Cart</h2>
+	<!-- <h2>Cart</h2> -->
 	<table>
 		<?php
 		$total_cart_cost = 0;
@@ -64,14 +68,21 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/catalog.php');
 			echo('<tbody>');
 			for($i = 0; $i < count($cart); $i++)
 			{
-				$total_item_cost = $cart[$i]['price'] * $cart[$i]['quantity'];
-				$total_cart_cost += $total_item_cost;
+				if($cart[$i]['quantity'] > 0)
+				{
+					$total_item_cost = $cart[$i]['price'] * $cart[$i]['quantity'];
+					$total_cart_cost += $total_item_cost;
 				
-				echo('<tr><td>' . $cart[$i]['name'] 
-				. '</td><td>$' . $cart[$i]['price'] 
-				. '</td><td>' . $cart[$i]['quantity']
-				. '</td><td>$' . number_format($total_item_cost, 2) 
-				. '</td></tr>');
+					echo('<tr><td>' . $cart[$i]['name'] 
+					. '</td><td>$' . $cart[$i]['price'] 
+					. '</td><td>' . $cart[$i]['quantity']
+					. '</td><td>$' . number_format($total_item_cost, 2) 
+					. '</td></tr>');
+				}
+				else
+				{
+					continue;
+				}
 			}
 			echo('<tr class="total"><td>Total Amount</td><td></td><td></td><td>$' . number_format($total_cart_cost, 2) . '</td></tr>');
 			echo('</tbody>');

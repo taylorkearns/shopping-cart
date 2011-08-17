@@ -5,7 +5,7 @@ class ShoppingCartManager
     function ShoppingCartManager()
     {
 	    $database_connection = new DatabaseConnection();
-	    if(!($database_connection->db_connect('127.0.0.1', 'root', 'ord403')))
+	    if(!($database_connection->db_connect('127.0.0.1', 'root', 'mu113n')))
 	    {
 	        $error = "Unable to establish database connection. Error: ".mysql_error();
 	        include($_SERVER['DOCUMENT_ROOT'].'/error.html.php');
@@ -97,6 +97,23 @@ class ShoppingCartManager
         
         return $cart;
     }    
+
+	function remove_cart_item($removed_item_id)
+	{
+		$cart = $_SESSION['cart'];
+		$removed_item;
+		for($i = 0; $i < sizeof($cart); $i++)
+		{
+			if($cart[$i]['id'] == $removed_item_id)
+			{
+				$cart[$i]['quantity'] = 0;
+				break;
+			}
+		}
+		
+		$_SESSION['cart'] = $cart;
+		return $cart;
+	}
     
     function return_cart()
     {

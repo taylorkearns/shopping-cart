@@ -11,6 +11,10 @@ if(isset($_POST['item']))
 {
     $cart = $shopping_cart_manager->create_cart_item($_POST['item']);
 }
+elseif(isset($_POST['removed_item']))
+{
+	$cart = $shopping_cart_manager->remove_cart_item($_POST['removed_item']);
+}
 else
 {
     $cart = $shopping_cart_manager->return_cart();
