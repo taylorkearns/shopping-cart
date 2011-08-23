@@ -15,17 +15,7 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/catalog.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="/favicon.ico">
     
-    <link rel="stylesheet" href="css/style.css">
-    <style type="text/css">
-        body { font-family: Helvetica; }
-        #catalog { width: 60%; float: left; margin-bottom: 50px; }
-        #cart { font-size: 0.8em; }
-        #cart table { width: 300px; margin-left: 60%; min-height: 200px; background: #eee; }
-        tr.total { background: #ddd; font-weight: 600; }
-        td { padding: 5px; }
-        th { text-align: left; white-space: nowrap; padding: 5px; }        
-        #debug { clear: left; border: 1px solid #ddd; padding: 5px; }
-    </style>
+    <link rel="stylesheet" href="../css/global.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.js"></script>
 </head>
 
@@ -56,44 +46,11 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/catalog.php');
     <?php endif; ?>
 </section> <!-- #catalog -->
 
-<section id="cart">
-	<!-- <h2>Cart</h2> -->
-	<table>
-		<?php
-		$total_cart_cost = 0;
-		
-		if(isset($cart) and count($cart) > 0)
-		{
-			echo('<thead><tr><th>Item Name</th><th>Item Price</th><th>Quantity</th><th>Total Price</th></tr></thead>');
-			echo('<tbody>');
-			for($i = 0; $i < count($cart); $i++)
-			{
-				if($cart[$i]['quantity'] > 0)
-				{
-					$total_item_cost = $cart[$i]['price'] * $cart[$i]['quantity'];
-					$total_cart_cost += $total_item_cost;
-				
-					echo('<tr><td>' . $cart[$i]['name'] 
-					. '</td><td>$' . $cart[$i]['price'] 
-					. '</td><td>' . $cart[$i]['quantity']
-					. '</td><td>$' . number_format($total_item_cost, 2) 
-					. '</td></tr>');
-				}
-				else
-				{
-					continue;
-				}
-			}
-			echo('<tr class="total"><td>Total Amount</td><td></td><td></td><td>$' . number_format($total_cart_cost, 2) . '</td></tr>');
-			echo('</tbody>');
-		} 
-		else
-		{
-			echo("Cart is empty.");
-		} 
-		?>
-	</table>
-</section>
+<?php if(isset($cart) and count($cart) > 0): ?>
+	<a href="/checkout-form" id="checkout">Checkout&nbsp;&#0187;</a>
+<?php endif; ?>
+
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/cart.inc.php'; ?>
 
 <section id="debug">
     <p><strong>debug:</strong><br />
