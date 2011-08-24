@@ -47,7 +47,7 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/catalog.php');
 </section> <!-- #catalog -->
 
 <?php if(isset($cart) and count($cart) > 0): ?>
-	<a href="/checkout-form" id="checkout">Checkout&nbsp;&#0187;</a>
+	<a href="/checkout-form" id="go-to-checkout">Checkout&nbsp;&#0187;</a>
 <?php endif; ?>
 
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/cart.inc.php'; ?>

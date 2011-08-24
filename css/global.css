@@ -1,15 +1,53 @@
-body { font-family: Helvetica; }
+body {
+  font-family: Helvetica; }
 
-#catalog { width: 60%; float: left; margin-bottom: 50px; }
+#catalog {
+  width: 60%;
+  margin-bottom: 50px; }
 
-#cart { font-size: 0.8em; }
+#cart {
+  font-size: 0.8em; }
+  #cart table {
+    position: absolute;
+    right: 50px;
+    top: 50px;
+    width: 300px;
+    min-height: 200px;
+    background: #eee; }
+    #cart table tr.total {
+      background: #ddd;
+      font-weight: 600; }
+    #cart table td {
+      padding: 5px; }
+    #cart table th {
+      text-align: left;
+      white-space: nowrap;
+      padding: 5px; }
 
-#cart table { width: 300px; margin-left: 60%; min-height: 200px; background: #eee; }
+#go-to-checkout {
+  position: absolute;
+  top: 20px;
+  right: 50px; }
 
-tr.total { background: #ddd; font-weight: 600; }
+.checkout {
+  width: 500px; }
+  .checkout form fieldset.shipping {
+    background: #eee;
+    margin-bottom: 10px; }
+  .checkout form fieldset.billing {
+    background: #ddd; }
+  .checkout form input[type="text"] {
+    width: 250px;
+    height: 20px;
+    line-height: 20px;
+    border: 1px solid;
+    margin-bottom: 10px;
+    padding: 0 5px; }
+  .checkout form label {
+    font-size: 12px;
+    font-weight: 700; }
 
-td { padding: 5px; }
-
-th { text-align: left; white-space: nowrap; padding: 5px; }
-        
-#debug { clear: left; border: 1px solid #ddd; padding: 5px; }
+#debug {
+  clear: left;
+  border: 1px solid #ddd;
+  padding: 5px; }

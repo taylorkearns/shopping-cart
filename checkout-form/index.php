@@ -25,10 +25,10 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/catalog.php');
 	
 <!-- <h1>Checkout</h1> -->
 
-<section id="checkout">
+<section class="checkout">
 	<p>Please enter your information below</p>
 	<form action="" method="post" id="customer-info" name="customer-info">
-		<fieldset>
+		<fieldset class="shipping">
 			<legend>Shipping</legend>
 			
 			<label for="customer-first-name">First Name</label><br />
@@ -56,22 +56,22 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/catalog.php');
 			<input type="text" id="customer-zip"/><br />
 		</fieldset>
 		
-		<fieldset>
+		<fieldset class="billing">
 			<legend>Billing</legend>
 			
-			<label for="customer-billing-address-1">Billing Address 1</label><br />
+			<label for="customer-billing-address-1">Address 1</label><br />
 			<input type="text" id="customer-billing-address-1"/><br />
 
-			<label for="customer-billing-address-2">Billing Address 2</label><br />
+			<label for="customer-billing-address-2">Address 2</label><br />
 			<input type="text" id="customer-billing-address-2"/><br />
 
-			<label for="customer-billing-city">Billing City</label><br />
+			<label for="customer-billing-city">City</label><br />
 			<input type="text" id="customer-billing-city"/><br />
 
-			<label for="customer-billing-state">Billing State</label><br />
+			<label for="customer-billing-state">State</label><br />
 			<input type="text" id="customer-billing-state"/><br />
 
-			<label for="customer-billing-zip">Billing Zip</label><br />
+			<label for="customer-billing-zip">Zip</label><br />
 			<input type="text" id="customer-billing-zip"/><br />
 			
 			<label for="customer-credit-card-number">Credit Card Number</label><br />
@@ -80,6 +80,8 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/catalog.php');
 			<label for="customer-credit-card-type">Credit Card Type</label><br />
 			<input type="text" id="customer-credit-card-type"/><br />
 		</fieldset>		
+		
+		<input type="submit" id="checkout" name="checkout" value="Complete purchase"/>
 	</form>
 </section>
   
